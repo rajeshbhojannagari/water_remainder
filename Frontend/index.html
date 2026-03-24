@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Remainder Website</h1>
-    <p>Send automated call remainder to your loved ones</p>
+    <h1>Reminder Website</h1>
+    <p>Send automated call reminders to your loved ones</p>
 
 
     <form id="reminder-form">
@@ -28,8 +28,34 @@
 
         <label>Enter Interval time: </label>
         <input type="number" required id="interval"><br><br>
+
         <button type="submit">Set Remainder</button><br><br>
         <button type="button" onclick="stopRemainder()">Stop Remainder</button>
     </form>
+
+    <script>
+        document.getElementById('reminder-form').addEventListener("submit",async(e)=>{
+            e.preventDefault();
+
+            const data={
+                to: document.getElementById('to').value,
+                from: document.getElementById('from').value,
+                message: document.getElementById('message').value,
+                start: document.getElementById('start').value,
+                end: document.getElementById('end').value,
+                interval:  document.getElementById('interval').value
+            };
+            await fetch('http://localhost:5000/start',{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(data)
+            });
+            alert("remainder started");
+        });
+        async function stopRemainder(){
+            await fetch('http://localhost:5000/stop',{method:"POST"});
+            alert("remainder stoped");
+        }
+    </script>
 </body>
 </html>
