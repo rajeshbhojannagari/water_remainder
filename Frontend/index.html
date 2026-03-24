@@ -6,27 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to my remainder website</h1>
-    <p>Here You can use this website to remaind your loved ones any wishes</p>
+    <h1>Remainder Website</h1>
+    <p>Send automated call remainder to your loved ones</p>
 
 
-    <form>
+    <form id="reminder-form">
         <label>Receiver Contact Number: </label>
-        <input type="number" required><br><br>
+        <input type="tel" required id="to"><br><br>
 
         <label>Twilio Number: </label>
-        <input type="number" required><br><br>
+        <input type="tel" required id="from"><br><br>
 
         <label>Message: </label>
-        <textarea placeholder="Enter your message you want to convey" required></textarea><br><br>
+        <textarea placeholder="Enter your message you want to convey" required id="message"></textarea><br><br>
 
         <label>Starting Time: </label>
-        <input type="time" required><br><br>
+        <input type="time" required id="start"><br><br>
 
         <label>Ending Time: </label>
-        <input type="time" required><br><br>
+        <input type="time" required id="end"><br><br>
 
-        <input type="submit">
+        <label>Enter Interval time: </label>
+        <input type="number" required id="interval"><br><br>
+        <button type="submit">Set Remainder</button><br><br>
+        <button type="button" onclick="stopRemainder()">Stop Remainder</button>
     </form>
 </body>
 </html>
