@@ -5,11 +5,13 @@ import os
 
 app=Flask(__name__)
 CORS(app)
-CONFIG_FILES="config.json"
+
+CONFIG_FILES=os.path.join(os.path.dirname(__file__),"config.json")
+
 #creating empty config file if it is not in exist
 if not  os.path.exists(CONFIG_FILES):
     with open(CONFIG_FILES,"w") as f:
-        json.dump({},f)
+        json.dump([],f)
 
 @app.route('/')
 def home():
@@ -20,7 +22,7 @@ def home():
 def start():
     data=request.json
     try:
-        with open(CONFIG_FILES,"w")as f:
+        with open(CONFIG_FILES,"r")as f:
             remainders=json.load(f)
     except:
         remainders=[]
