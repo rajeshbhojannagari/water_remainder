@@ -16,3 +16,14 @@ def home():
     return "backend running"
 
 #start remainder
+@app.route('/start',methods=["POST"])
+def start():
+    data=request.json
+    with open(CONFIG_FILES,'w') as f:
+        json.dump(data,f)
+    return jsonify({
+        "status":"success",
+        "message":"remainder started",
+        "data":data
+    })
+
