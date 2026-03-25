@@ -19,8 +19,17 @@ def home():
 @app.route('/start',methods=["POST"])
 def start():
     data=request.json
-    with open(CONFIG_FILES,'w') as f:
-        json.dump(data,f)
+    try:
+        with open(CONFIG_FILES,"w")as f:
+            remainders=json.load(f)
+    except:
+        remainders=[]
+    if not isinstance(remainders,list):
+        remainders=[]
+    remainders.append(data)
+
+    with open(CONFIG_FILES,"w")as f:
+        json.dump(remainders,f,indent=4)
     return jsonify({
         "status":"success",
         "message":"Remainder Started",
@@ -30,9 +39,8 @@ def start():
 #stop remainder
 @app.route('/stop',methods=["POST"])
 def stop():
-    data=request.json
     with open(CONFIG_FILES,"w") as f:
-        json.dump({},f)
+        json.dump([],f)
     return jsonify({
         "status":"success",
         "message":"Remainder Stopped"
