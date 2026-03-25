@@ -5,3 +5,14 @@ import os
 
 app=Flask(__name__)
 CORS(app)
+CONFIG_FILES="config.json"
+#creating empty config file if it is not in exist
+if not  os.path.exists(CONFIG_FILES):
+    with open(CONFIG_FILES,"w") as f:
+        json.dump({},f)
+
+@app.route('/')
+def home():
+    return "backend running"
+
+#start remainder
