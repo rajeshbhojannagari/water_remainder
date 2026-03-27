@@ -38,6 +38,8 @@ def start():
         "data":data
     })
 
+
+
 #stop remainder
 @app.route('/stop',methods=["POST"])
 def stop():
