@@ -41,14 +41,14 @@ def start():
 
 
 #stop remainder
-@app.route('/stop',methods=["POST"])
-def stop():
-    with open(CONFIG_FILES,"w") as f:
-        json.dump([],f)
-    return jsonify({
-        "status":"success",
-        "message":"Remainder Stopped"
-    })
+# @app.route('/stop',methods=["POST"])
+# def stop():
+#     with open(CONFIG_FILES,"w") as f:
+#         json.dump([],f)
+#     return jsonify({
+#         "status":"success",
+#         "message":"Remainder Stopped"
+#     })
 
 if __name__=="__main__":
     app.run(debug=True)
